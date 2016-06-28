@@ -1,6 +1,61 @@
 
-para la funcion 'test1' (multiplicacion de matrices con 3 bucles ),
+para la funcion 'test1' (multiplicacion de matrices con 3 bucles )
 
+cs11@cs11:~/Desktop/m$ valgrind --tool=cachegrind ./t1
+==3473== Cachegrind, a cache and branch-prediction profiler
+==3473== Copyright (C) 2002-2013, and GNU GPL'd, by Nicholas Nethercote et al.
+==3473== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==3473== Command: ./t1
+==3473== 
+--3473-- warning: L3 cache found, using its data for the LL simulation.
+"multiplicado" multiplicado
+==3473== 
+==3473== I   refs:      14,124,468
+==3473== I1  misses:         1,371
+==3473== LLi misses:         1,336
+==3473== I1  miss rate:       0.00%
+==3473== LLi miss rate:       0.00%
+==3473== 
+==3473== D   refs:       5,716,834  (5,256,485 rd   + 460,349 wr)
+==3473== D1  misses:        64,567  (   61,400 rd   +   3,167 wr)
+==3473== LLd misses:         7,963  (    5,263 rd   +   2,700 wr)
+==3473== D1  miss rate:        1.1% (      1.1%     +     0.6%  )
+==3473== LLd miss rate:        0.1% (      0.1%     +     0.5%  )
+==3473== 
+==3473== LL refs:           65,938  (   62,771 rd   +   3,167 wr)
+==3473== LL misses:          9,299  (    6,599 rd   +   2,700 wr)
+==3473== LL miss rate:         0.0% (      0.0%     +     0.5%  )
+========================================================================
+para la funcion 'test2' (inverted bloked 6 bucles )
+
+cs11@cs11:~/Desktop/m$ valgrind --tool=cachegrind ./t2
+==3493== Cachegrind, a cache and branch-prediction profiler
+==3493== Copyright (C) 2002-2013, and GNU GPL'd, by Nicholas Nethercote et al.
+==3493== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==3493== Command: ./t2
+==3493== 
+--3493-- warning: L3 cache found, using its data for the LL simulation.
+bloque1: 1 bloque2: 1 bloque3: 1
+==3493== 
+==3493== I   refs:      22,258,572
+==3493== I1  misses:         1,383
+==3493== LLi misses:         1,347
+==3493== I1  miss rate:       0.00%
+==3493== LLi miss rate:       0.00%
+==3493== 
+==3493== D   refs:      10,844,409  (9,556,575 rd   + 1,287,834 wr)
+==3493== D1  misses:        64,233  (   61,063 rd   +     3,170 wr)
+==3493== LLd misses:         8,071  (    5,377 rd   +     2,694 wr)
+==3493== D1  miss rate:        0.5% (      0.6%     +       0.2%  )
+==3493== LLd miss rate:        0.0% (      0.0%     +       0.2%  )
+==3493== 
+==3493== LL refs:           65,616  (   62,446 rd   +     3,170 wr)
+==3493== LL misses:          9,418  (    6,724 rd   +     2,694 wr)
+==3493== LL miss rate:         0.0% (      0.0%     +       0.2%  )
+cs11@cs11:~/Desktop/m$ 
+
+========================================================================
+para la funcion 'test1' (multiplicacion de matrices con 3 bucles )
 
 encon@n:~/Desktop/paralelos$ g++ lb1.cpp -o t1
 
