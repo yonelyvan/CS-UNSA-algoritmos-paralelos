@@ -1,0 +1,617 @@
+
+para la funcion 'test1' (multiplicacion de matrices con 3 bucles ),
+
+
+encon@n:~/Desktop/paralelos$ g++ lb1.cpp -o t1
+
+valgrind ./t1
+==4952== Memcheck, a memory error detector
+==4952== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==4952== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==4952== Command: ./t1
+==4952== 
+"multiplicado" multiplicado
+==4952== 
+==4952== HEAP SUMMARY:
+==4952==     in use at exit: 72,704 bytes in 1 blocks
+==4952==   total heap usage: 2 allocs, 1 frees, 73,728 bytes allocated
+==4952== 
+==4952== LEAK SUMMARY:
+==4952==    definitely lost: 0 bytes in 0 blocks
+==4952==    indirectly lost: 0 bytes in 0 blocks
+==4952==      possibly lost: 0 bytes in 0 blocks
+==4952==    still reachable: 72,704 bytes in 1 blocks
+==4952==         suppressed: 0 bytes in 0 blocks
+==4952== Rerun with --leak-check=full to see details of leaked memory
+==4952== 
+==4952== For counts of detected and suppressed errors, rerun with: -v
+==4952== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+_______________________________________________________________________________________
+blocked version - 6 bucles
+
+encon@n:~/Desktop/paralelos$ valgrind ./t2
+==5127== Memcheck, a memory error detector
+==5127== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==5127== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==5127== Command: ./t2
+==5127== 
+bloque1: 1 bloque2: 1 bloque3: 1
+==5127== 
+==5127== HEAP SUMMARY:
+==5127==     in use at exit: 72,704 bytes in 1 blocks
+==5127==   total heap usage: 2 allocs, 1 frees, 73,728 bytes allocated
+==5127== 
+==5127== LEAK SUMMARY:
+==5127==    definitely lost: 0 bytes in 0 blocks
+==5127==    indirectly lost: 0 bytes in 0 blocks
+==5127==      possibly lost: 0 bytes in 0 blocks
+==5127==    still reachable: 72,704 bytes in 1 blocks
+==5127==         suppressed: 0 bytes in 0 blocks
+==5127== Rerun with --leak-check=full to see details of leaked memory
+==5127== 
+==5127== For counts of detected and suppressed errors, rerun with: -v
+==5127== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+_________________________________________________________________________________________
+pruebas 
+
+test1(500);
+
+encon@n:~/Desktop/paralelos$ valgrind ./t1
+==5260== Memcheck, a memory error detector
+==5260== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==5260== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==5260== Command: ./t1
+==5260== 
+==5260== Warning: client switching stacks?  SP change: 0xffefffcd0 --> 0xffee17840
+==5260==          to suppress, use: --max-stackframe=2000016 or greater
+==5260== Warning: client switching stacks?  SP change: 0xffee17840 --> 0xffec2f3b0
+==5260==          to suppress, use: --max-stackframe=2000016 or greater
+==5260== Warning: client switching stacks?  SP change: 0xffec2f3b0 --> 0xffea46f20
+==5260==          to suppress, use: --max-stackframe=2000016 or greater
+==5260==          further instances of this message will not be shown.
+==5260== Invalid write of size 8
+==5260==    at 0x400E10: test1(int) (in /home/encon/Desktop/paralelos/t1)
+==5260==    by 0x40142F: main (in /home/encon/Desktop/paralelos/t1)
+==5260==  Address 0xffea46f18 is on thread 1's stack
+==5260==  in frame #0, created by test1(int) (???:)
+==5260== 
+==5260== Invalid read of size 8
+==5260==    at 0x54FFF5D: rand (rand.c:28)
+==5260==    by 0x400E14: test1(int) (in /home/encon/Desktop/paralelos/t1)
+==5260==    by 0x40142F: main (in /home/encon/Desktop/paralelos/t1)
+==5260==  Address 0xffea46f18 is on thread 1's stack
+==5260==  in frame #0, created by rand (rand.c:26)
+==5260== 
+==5260== Invalid write of size 8
+==5260==    at 0x400E54: test1(int) (in /home/encon/Desktop/paralelos/t1)
+==5260==    by 0x40142F: main (in /home/encon/Desktop/paralelos/t1)
+==5260==  Address 0xffee17840 is on thread 1's stack
+==5260==  in frame #0, created by test1(int) (???:)
+==5260== 
+==5260== Invalid write of size 8
+==5260==    at 0x400EA3: test1(int) (in /home/encon/Desktop/paralelos/t1)
+==5260==    by 0x40142F: main (in /home/encon/Desktop/paralelos/t1)
+==5260==  Address 0xffec2f3b0 is on thread 1's stack
+==5260==  in frame #0, created by test1(int) (???:)
+==5260== 
+==5260== Invalid write of size 8
+==5260==    at 0x400F1B: test1(int) (in /home/encon/Desktop/paralelos/t1)
+==5260==    by 0x40142F: main (in /home/encon/Desktop/paralelos/t1)
+==5260==  Address 0xffea46f20 is on thread 1's stack
+==5260==  in frame #0, created by test1(int) (???:)
+==5260== 
+==5260== Invalid read of size 8
+==5260==    at 0x400F6A: test1(int) (in /home/encon/Desktop/paralelos/t1)
+==5260==    by 0x40142F: main (in /home/encon/Desktop/paralelos/t1)
+==5260==  Address 0xffea46f20 is on thread 1's stack
+==5260==  in frame #0, created by test1(int) (???:)
+==5260== 
+==5260== Invalid read of size 8
+==5260==    at 0x400F96: test1(int) (in /home/encon/Desktop/paralelos/t1)
+==5260==    by 0x40142F: main (in /home/encon/Desktop/paralelos/t1)
+==5260==  Address 0xffee17840 is on thread 1's stack
+==5260==  in frame #0, created by test1(int) (???:)
+==5260== 
+==5260== Invalid read of size 8
+==5260==    at 0x400FBE: test1(int) (in /home/encon/Desktop/paralelos/t1)
+==5260==    by 0x40142F: main (in /home/encon/Desktop/paralelos/t1)
+==5260==  Address 0xffec2f3b0 is on thread 1's stack
+==5260==  in frame #0, created by test1(int) (???:)
+==5260== 
+==5260== Invalid write of size 8
+==5260==    at 0x400FE7: test1(int) (in /home/encon/Desktop/paralelos/t1)
+==5260==    by 0x40142F: main (in /home/encon/Desktop/paralelos/t1)
+==5260==  Address 0xffea46f20 is on thread 1's stack
+==5260==  in frame #0, created by test1(int) (???:)
+==5260== 
+==5260== 
+==5260== More than 10000000 total errors detected.  I'm not reporting any more.
+==5260== Final error counts will be inaccurate.  Go fix your program!
+==5260== Rerun with --error-limit=no to disable this cutoff.  Note
+==5260== that errors may occur in your program without prior warning from
+==5260== Valgrind, because errors are no longer being displayed.
+==5260== 
+
+"multiplicado" multiplicado
+==5260== 
+==5260== HEAP SUMMARY:
+==5260==     in use at exit: 72,704 bytes in 1 blocks
+==5260==   total heap usage: 2 allocs, 1 frees, 73,728 bytes allocated
+==5260== 
+==5260== LEAK SUMMARY:
+==5260==    definitely lost: 0 bytes in 0 blocks
+==5260==    indirectly lost: 0 bytes in 0 blocks
+==5260==      possibly lost: 0 bytes in 0 blocks
+==5260==    still reachable: 72,704 bytes in 1 blocks
+==5260==         suppressed: 0 bytes in 0 blocks
+==5260== Rerun with --leak-check=full to see details of leaked memory
+==5260== 
+==5260== For counts of detected and suppressed errors, rerun with: -v
+==5260== ERROR SUMMARY: 10000000 errors from 9 contexts (suppressed: 0 from 0)
+_____________________________________________________________________________
+test2() dimension 512
+
+encon@n:~/Desktop/paralelos$ valgrind ./t2
+==5289== Memcheck, a memory error detector
+==5289== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==5289== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==5289== Command: ./t2
+==5289== 
+==5289== Warning: client switching stacks?  SP change: 0xffefffe30 --> 0xffe9ffe00
+==5289==          to suppress, use: --max-stackframe=6291504 or greater
+==5289== Invalid write of size 4
+==5289==    at 0x40108A: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe08 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x401094: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe08 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid write of size 4
+==5289==    at 0x4010A4: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe0c is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x4010AE: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe0c is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x4010BA: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe08 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x4010C0: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe0c is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid write of size 8
+==5289==    at 0x4010E6: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffdf8 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 8
+==5289==    at 0x51DD603: exp (w_exp.c:32)
+==5289==    by 0x4010EA: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffdf8 is on thread 1's stack
+==5289==  in frame #0, created by exp (w_exp.c:25)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x4010F0: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe0c is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x4010F9: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe08 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid write of size 8
+==5289==    at 0x401109: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe20 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x401111: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe0c is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x40111A: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe08 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid write of size 4
+==5289==    at 0x401126: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe08 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x401130: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe08 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid write of size 4
+==5289==    at 0x401140: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe0c is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x40114A: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe0c is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x401156: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe08 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x40115C: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe0c is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x40118C: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe0c is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x401195: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe08 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid write of size 8
+==5289==    at 0x4011A5: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffebffe20 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x4011AD: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe0c is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x4011B6: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe08 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid write of size 4
+==5289==    at 0x4011C2: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe08 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x4011CC: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe08 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid write of size 4
+==5289==    at 0x4011D8: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe0c is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x4011E2: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe0c is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x4011EE: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe0c is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x4011F6: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe08 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid write of size 8
+==5289==    at 0x40120A: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffedffe20 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x401213: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe0c is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x40121C: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe08 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+bloque1: 1 bloque2: 1 bloque3: 1
+==5289== Invalid write of size 4
+==5289==    at 0x401282: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe08 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x40128C: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe08 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid write of size 4
+==5289==    at 0x40129C: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe0c is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x4012A6: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe0c is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid write of size 4
+==5289==    at 0x4012B6: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe10 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x4012C0: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe10 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x4012D0: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe08 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid write of size 4
+==5289==    at 0x4012D6: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe14 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x4012DC: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe08 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x4012E5: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe14 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x4012F1: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe14 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x401301: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe0c is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid write of size 4
+==5289==    at 0x401307: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe18 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x40130D: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe0c is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x401316: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe18 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x401322: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe18 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x401332: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe10 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid write of size 4
+==5289==    at 0x401338: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe1c is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x40133E: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe10 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x401347: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe1c is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x401353: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe1c is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x401363: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe18 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x40136B: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe14 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 8
+==5289==    at 0x40137B: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffedffe20 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x401384: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe1c is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x40138C: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe14 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 8
+==5289==    at 0x40139C: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe20 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x4013A5: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe18 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x4013AD: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe1c is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 8
+==5289==    at 0x4013BD: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffebffe20 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x4013CE: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe18 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x4013D6: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe14 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid write of size 8
+==5289==    at 0x4013E6: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffedffe20 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x4013EF: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe1c is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x4013FB: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe18 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x401407: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe14 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x401413: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe10 is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== Invalid read of size 4
+==5289==    at 0x40141F: test2() (in /home/encon/Desktop/paralelos/t2)
+==5289==    by 0x401456: main (in /home/encon/Desktop/paralelos/t2)
+==5289==  Address 0xffe9ffe0c is on thread 1's stack
+==5289==  in frame #0, created by test2() (???:)
+==5289== 
+==5289== 
+==5289== More than 10000000 total errors detected.  I'm not reporting any more.
+==5289== Final error counts will be inaccurate.  Go fix your program!
+==5289== Rerun with --error-limit=no to disable this cutoff.  Note
+==5289== that errors may occur in your program without prior warning from
+==5289== Valgrind, because errors are no longer being displayed.
+==5289== 
+
+==5289== Warning: client switching stacks?  SP change: 0xffe9ffe00 --> 0xffefffe30
+==5289==          to suppress, use: --max-stackframe=6291504 or greater
+==5289== 
+==5289== HEAP SUMMARY:
+==5289==     in use at exit: 72,704 bytes in 1 blocks
+==5289==   total heap usage: 2 allocs, 1 frees, 73,728 bytes allocated
+==5289== 
+==5289== LEAK SUMMARY:
+==5289==    definitely lost: 0 bytes in 0 blocks
+==5289==    indirectly lost: 0 bytes in 0 blocks
+==5289==      possibly lost: 0 bytes in 0 blocks
+==5289==    still reachable: 72,704 bytes in 1 blocks
+==5289==         suppressed: 0 bytes in 0 blocks
+==5289== Rerun with --leak-check=full to see details of leaked memory
+==5289== 
+==5289== For counts of detected and suppressed errors, rerun with: -v
+==5289== ERROR SUMMARY: 10000000 errors from 71 contexts (suppressed: 0 from 0)
+
+
